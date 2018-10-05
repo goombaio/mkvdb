@@ -19,3 +19,17 @@
 Package mkvdb ...
 */
 package mkvdb_test
+
+import (
+	"testing"
+
+	"github.com/goombaio/mkvdb"
+)
+
+func TestOrderedMap(t *testing.T) {
+	m := mkvdb.New()
+
+	if !m.Empty() {
+		t.Fatalf("New map expected to be empty but it is not")
+	}
+}
