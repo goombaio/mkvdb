@@ -1,4 +1,4 @@
-// Copyright 2018, gossiper project Authors. All rights reserved.
+// Copyright 2018, Goomba project Authors. All rights reserved.
 //
 // Licensed to the Apache Software Foundation (ASF) under one or more
 // contributor license agreements.  See the NOTICE file distributed with this
@@ -15,16 +15,13 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-/*
-Package mkvdb ...
-*/
 package mkvdb
 
 import (
 	"sync"
 )
 
-// MKVDB ...MKDB
+// MKVDB ...
 type MKVDB struct {
 	// mu Mutex protects data structures below.
 	mu sync.Mutex

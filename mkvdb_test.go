@@ -1,4 +1,4 @@
-// Copyright 2018, gossiper project Authors. All rights reserved.
+// Copyright 2018, Goomba project Authors. All rights reserved.
 //
 // Licensed to the Apache Software Foundation (ASF) under one or more
 // contributor license agreements.  See the NOTICE file distributed with this
@@ -15,9 +15,6 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-/*
-Package mkvdb ...
-*/
 package mkvdb_test
 
 import (
@@ -26,10 +23,60 @@ import (
 	"github.com/goombaio/mkvdb"
 )
 
-func TestOrderedMap(t *testing.T) {
+func TestMKVDB(t *testing.T) {
 	m := mkvdb.New()
 
 	if !m.Empty() {
-		t.Fatalf("New map expected to be empty but it is not")
+		t.Fatalf("New MKVDB expected to be empty but it is not")
+	}
+}
+
+func TestMKVDB_Put(t *testing.T) {
+	m := mkvdb.New()
+
+	m.Put("foo", "bar")
+
+	if m.Empty() {
+		t.Fatalf("New MKVDB expected not to be empty but it is")
+	}
+}
+
+func TestMKVDB_Get(t *testing.T) {
+	m := mkvdb.New()
+
+	m.Put("foo", "bar")
+
+	if m.Empty() {
+		t.Fatalf("New MKVDB expected not to be empty but it is")
+	}
+
+	value, found := m.Get("foo")
+	if !found {
+		t.Fatalf("Key expected to be found but it isn't")
+	}
+	if value != "bar" {
+		t.Fatalf("Value expected to be %q, but got %q", "bar", value)
+	}
+}
+
+func TestMKVDB_Remove(t *testing.T) {
+	m := mkvdb.New()
+
+	m.Put("foo", "bar")
+
+	if m.Empty() {
+		t.Fatalf("New MKVDB expected not to be empty but it is")
+	}
+
+	m.Remove("bar")
+
+	if m.Empty() {
+		t.Fatalf("New MKVDB expected not to be empty but it is")
+	}
+
+	m.Remove("foo")
+
+	if !m.Empty() {
+		t.Fatalf("New MKVDB expected to be empty but it is not")
 	}
 }
